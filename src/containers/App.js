@@ -28,15 +28,18 @@ export default class App extends Component {
     const filteredRobots = robots.filter(robot =>{
       return robot.name.toLowerCase().includes(searchfield.toLowerCase());
     })
-    return !robots.length ?
-      <h1>Loading</h1> :
-      (
-        <div className='tc' style={{overflow: "hidden",}}>
-          <h1 className='f1'>RoboFriends</h1>
-          <SearchBox searchChange={this.onSearchChange}/>
-          <Scroll>
+    return (<div className='tc ' style={{overflow: "hidden",}}>
+          <h1 className='f1 animated tada slow'>RoboFriends</h1>
+          <SearchBox className="animated bounceInDown" searchChange={this.onSearchChange}/>
+          {
+            !robots.length ?
+               <h1 className="tc f1" >Loading. . . . . . .</h1> 
+          :(
+            <Scroll>
             <CardList robots={filteredRobots} />
           </Scroll>
+          )
+          } 
         </div>
       );
   }
